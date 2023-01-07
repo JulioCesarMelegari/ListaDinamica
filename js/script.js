@@ -9,6 +9,7 @@ function renderTodos(){
 
     for (todo of todos){
         var todoElement = document.createElement('li');
+        var spanElement = document.createElement('span');
         var todoText = document.createTextNode(todo);
 
         var linkElement = document.createElement('a');
@@ -18,10 +19,14 @@ function renderTodos(){
 
         var pos = todos.indexOf(todo);
         linkElement.setAttribute('onclick', 'deleteTodo('+ pos +')');
+
+        todoElement.setAttribute('class','list-group-item')
+        todoElement.sets
         
         linkElement.appendChild(linkText);
 
-        todoElement.appendChild(todoText);
+        spanElement.appendChild(todoText)
+        todoElement.appendChild(spanElement);
         todoElement.appendChild(linkElement);
         listElement.appendChild(todoElement);
     }
@@ -31,11 +36,16 @@ renderTodos();
 
 function addTodo(){
     var todoText = inputElement.value;
-
-    todos.push(todoText);
-    inputElement.value='';
-    renderTodos();
-    saveToStorage();
+    if(todoText == ''){
+        alert("Favor informar um valor");
+    }
+    else{
+        todos.push(todoText);
+        inputElement.value='';
+        renderTodos();
+        saveToStorage();
+    }
+    
 }
 
 buttonElement.onclick = addTodo;
